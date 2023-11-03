@@ -20,6 +20,7 @@
   <body>
     <div class="container">
       <div class="menu">
+        <h1>tic tac toe</h1>
         <div class="upper-section">
           <form>
             <select name="difficulty" id="difficulty">
@@ -43,21 +44,23 @@
             </svg>
           </button>
         </div>
-        <div class="select"><button>o</button><button>x</button></div>
+        <div class="select">
+          <button class="select-o">o</button><button class="select-x">x</button>
+        </div>
         <div class="turn">Start game or select player</div>
       </div>
       <div class="board">
-        <div class="field" id="fr-1">x</div>
-        <div class="field" id="fr-2">x</div>
-        <div class="field" id="fr-3">o</div>
-        <div class="field" id="sr-1">x</div>
-        <div class="field" id="sr-2">o</div>
-        <div class="field" id="sr-3">x</div>
-        <div class="field" id="tr-1">o</div>
-        <div class="field" id="tr-2"><span style="color: ">o</span></div>
-        <div class="field" id="tr-3">x</div>
+        <div class="field" id="fr-1"></div>
+        <div class="field" id="fr-2"></div>
+        <div class="field" id="fr-3"></div>
+        <div class="field" id="sr-1"></div>
+        <div class="field" id="sr-2"></div>
+        <div class="field" id="sr-3"></div>
+        <div class="field" id="tr-1"></div>
+        <div class="field" id="tr-2"></div>
+        <div class="field" id="tr-3"></div>
       </div>
-      <div class="footer"><button>Restart</button></div>
+      <div class="footer"><button class="restart">Restart</button></div>
     </div>
   </body>
 </html>

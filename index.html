@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+    </style>
+    <script src="script.js" defer></script>
+    <title>Tic Tac Toe</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="menu">
+        <div class="upper-section">
+          <form>
+            <select name="difficulty" id="difficulty">
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="impossible">Impossible</option>
+            </select>
+          </form>
+          <button class="share">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              fill="currentColor"
+              class="bi bi-share-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="select"><button>o</button><button>x</button></div>
+        <div class="turn">Start game or select player</div>
+      </div>
+      <div class="board">
+        <div class="field" id="fr-1">x</div>
+        <div class="field" id="fr-2">x</div>
+        <div class="field" id="fr-3">o</div>
+        <div class="field" id="sr-1">x</div>
+        <div class="field" id="sr-2">o</div>
+        <div class="field" id="sr-3">x</div>
+        <div class="field" id="tr-1">o</div>
+        <div class="field" id="tr-2"><span style="color: ">o</span></div>
+        <div class="field" id="tr-3">x</div>
+      </div>
+      <div class="footer"><button>Restart</button></div>
+    </div>
+  </body>
+</html>

@@ -3,6 +3,7 @@ const selectO = document.querySelector(".select-o");
 const selectX = document.querySelector(".select-x");
 const restart = document.querySelector(".restart");
 const fields = document.querySelectorAll(".field");
+const winner = document.querySelector(".winner");
 
 let gameBoardWin = Array.from(fields);
 let gameBoard = Array.from(fields);
@@ -17,6 +18,8 @@ function checkWin() {
     gameBoard[2] == "player"
   ) {
     isGameEnd = true;
+    winner.textContent = "You Won!";
+    winnerText();
     turn.textContent = `${skin} wins`;
   } else if (
     gameBoard[3] == "player" &&
@@ -24,6 +27,8 @@ function checkWin() {
     gameBoard[5] == "player"
   ) {
     isGameEnd = true;
+    winner.textContent = "You Won!";
+    winnerText();
     turn.textContent = `${skin} wins`;
   } else if (
     gameBoard[6] == "player" &&
@@ -31,6 +36,8 @@ function checkWin() {
     gameBoard[8] == "player"
   ) {
     isGameEnd = true;
+    winner.textContent = "You Won!";
+    winnerText();
     turn.textContent = `${skin} wins`;
   } else if (
     gameBoard[0] == "player" &&
@@ -38,13 +45,17 @@ function checkWin() {
     gameBoard[6] == "player"
   ) {
     isGameEnd = true;
-    turn.textContent = `${skin} wins`;
+    winner.textContent = "You Won!";
+    winnerText();
+    turn.textContent = `${skin}  wins`;
   } else if (
     gameBoard[1] == "player" &&
     gameBoard[4] == "player" &&
     gameBoard[7] == "player"
   ) {
     isGameEnd = true;
+    winner.textContent = "You Won!";
+    winnerText();
     turn.textContent = `${skin} wins`;
   } else if (
     gameBoard[2] == "player" &&
@@ -52,6 +63,8 @@ function checkWin() {
     gameBoard[8] == "player"
   ) {
     isGameEnd = true;
+    winner.textContent = "You Won!";
+    winnerText();
     turn.textContent = `${skin} wins`;
   } else if (
     gameBoard[0] == "player" &&
@@ -59,6 +72,8 @@ function checkWin() {
     gameBoard[8] == "player"
   ) {
     isGameEnd = true;
+    winner.textContent = "You Won!";
+    winnerText();
     turn.textContent = `${skin} wins`;
   } else if (
     gameBoard[2] == "player" &&
@@ -66,6 +81,8 @@ function checkWin() {
     gameBoard[6] == "player"
   ) {
     isGameEnd = true;
+    winner.textContent = "You Won!";
+    winnerText();
     turn.textContent = `${skin} wins`;
   } else if (
     gameBoard[0] == "computer" &&
@@ -73,6 +90,8 @@ function checkWin() {
     gameBoard[2] == "computer"
   ) {
     isGameEnd = true;
+    winnerText();
+    winner.textContent = "Computer Won!";
     turn.textContent = `${computerSkin} wins`;
   } else if (
     gameBoard[3] == "computer" &&
@@ -80,6 +99,8 @@ function checkWin() {
     gameBoard[5] == "computer"
   ) {
     isGameEnd = true;
+    winnerText();
+    winner.textContent = "Computer Won!";
     turn.textContent = `${computerSkin} wins`;
   } else if (
     gameBoard[6] == "computer" &&
@@ -87,6 +108,8 @@ function checkWin() {
     gameBoard[8] == "computer"
   ) {
     isGameEnd = true;
+    winnerText();
+    winner.textContent = "Computer Won!";
     turn.textContent = `${computerSkin} wins`;
   } else if (
     gameBoard[0] == "computer" &&
@@ -94,6 +117,8 @@ function checkWin() {
     gameBoard[6] == "computer"
   ) {
     isGameEnd = true;
+    winnerText();
+    winner.textContent = "Computer Won!";
     turn.textContent = `${computerSkin} wins`;
   } else if (
     gameBoard[1] == "computer" &&
@@ -101,6 +126,8 @@ function checkWin() {
     gameBoard[7] == "computer"
   ) {
     isGameEnd = true;
+    winnerText();
+    winner.textContent = "Computer Won!";
     turn.textContent = `${computerSkin} wins`;
   } else if (
     gameBoard[2] == "computer" &&
@@ -108,6 +135,8 @@ function checkWin() {
     gameBoard[8] == "computer"
   ) {
     isGameEnd = true;
+    winnerText();
+    winner.textContent = "Computer Won!";
     turn.textContent = `${computerSkin} wins`;
   } else if (
     gameBoard[0] == "computer" &&
@@ -115,6 +144,8 @@ function checkWin() {
     gameBoard[8] == "computer"
   ) {
     isGameEnd = true;
+    winnerText();
+    winner.textContent = "Computer Won!";
     turn.textContent = `${computerSkin} wins`;
   } else if (
     gameBoard[2] == "computer" &&
@@ -122,7 +153,9 @@ function checkWin() {
     gameBoard[6] == "computer"
   ) {
     isGameEnd = true;
-    turn.textContent = `${computerSkin} wins`;
+    winnerText();
+    winner.textContent = "Computer Won!";
+    turn.textContent = `${computerSkin}`;
   }
 }
 let skin;
@@ -134,6 +167,10 @@ let isGameEnd = false;
 
 let playerFields = [];
 let computerFields = [];
+
+function winnerText() {
+  winner.style.display = "flex";
+}
 
 selectO.addEventListener("click", function () {
   if (selected == false) {
@@ -159,7 +196,12 @@ selectX.addEventListener("click", function () {
 
 fields.forEach(function (field) {
   field.addEventListener("click", function () {
-    if (selected === true && round === "player" && gameBoard.includes(field)) {
+    if (
+      selected === true &&
+      round === "player" &&
+      gameBoard.includes(field) &&
+      isGameEnd == false
+    ) {
       console.log("works");
       field.textContent = skin;
       gameBoard[gameBoard.indexOf(field)] = "player";
@@ -176,7 +218,8 @@ fields.forEach(function (field) {
       if (roundNumber <= 9) {
         computerMove();
       } else if (isGameEnd != true) {
-        console.log((turn.textContent = "End"));
+        winner.textContent = "It's a Draw!";
+        winnerText();
         isGameEnd = true;
       }
     }
@@ -211,6 +254,14 @@ function computerMove() {
   }, 200);
 }
 restart.addEventListener("click", function () {
+  restartFun();
+});
+winner.addEventListener("click", function () {
+  winner.style.display = "none";
+  restartFun();
+});
+
+function restartFun() {
   round = "";
   fields.forEach(function (field) {
     field.textContent = "";
@@ -225,4 +276,4 @@ restart.addEventListener("click", function () {
   roundNumber = 1;
   console.log(round);
   isGameEnd = false;
-});
+}

@@ -46,6 +46,9 @@ body {
   align-items: center;
   border-bottom: 5px solid #000413;
 }
+.menu h1 {
+  margin: 0px;
+}
 .upper-section {
   width: 100%;
   display: flex;

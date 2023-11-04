@@ -4,16 +4,136 @@ const selectX = document.querySelector(".select-x");
 const restart = document.querySelector(".restart");
 const fields = document.querySelectorAll(".field");
 
+let gameBoardWin = Array.from(fields);
 let gameBoard = Array.from(fields);
-
+console.log(randomField());
 function randomField() {
   return gameBoard[Math.floor(Math.random() * gameBoard.length)];
 }
-
+function checkWin() {
+  if (
+    gameBoard[0] == "player" &&
+    gameBoard[1] == "player" &&
+    gameBoard[2] == "player"
+  ) {
+    isGameEnd = true;
+    turn.textContent = `${skin} wins`;
+  } else if (
+    gameBoard[3] == "player" &&
+    gameBoard[4] == "player" &&
+    gameBoard[5] == "player"
+  ) {
+    isGameEnd = true;
+    turn.textContent = `${skin} wins`;
+  } else if (
+    gameBoard[6] == "player" &&
+    gameBoard[7] == "player" &&
+    gameBoard[8] == "player"
+  ) {
+    isGameEnd = true;
+    turn.textContent = `${skin} wins`;
+  } else if (
+    gameBoard[0] == "player" &&
+    gameBoard[3] == "player" &&
+    gameBoard[6] == "player"
+  ) {
+    isGameEnd = true;
+    turn.textContent = `${skin} wins`;
+  } else if (
+    gameBoard[1] == "player" &&
+    gameBoard[4] == "player" &&
+    gameBoard[7] == "player"
+  ) {
+    isGameEnd = true;
+    turn.textContent = `${skin} wins`;
+  } else if (
+    gameBoard[2] == "player" &&
+    gameBoard[5] == "player" &&
+    gameBoard[8] == "player"
+  ) {
+    isGameEnd = true;
+    turn.textContent = `${skin} wins`;
+  } else if (
+    gameBoard[0] == "player" &&
+    gameBoard[4] == "player" &&
+    gameBoard[8] == "player"
+  ) {
+    isGameEnd = true;
+    turn.textContent = `${skin} wins`;
+  } else if (
+    gameBoard[2] == "player" &&
+    gameBoard[4] == "player" &&
+    gameBoard[6] == "player"
+  ) {
+    isGameEnd = true;
+    turn.textContent = `${skin} wins`;
+  } else if (
+    gameBoard[0] == "computer" &&
+    gameBoard[1] == "computer" &&
+    gameBoard[2] == "computer"
+  ) {
+    isGameEnd = true;
+    turn.textContent = `${computerSkin} wins`;
+  } else if (
+    gameBoard[3] == "computer" &&
+    gameBoard[4] == "computer" &&
+    gameBoard[5] == "computer"
+  ) {
+    isGameEnd = true;
+    turn.textContent = `${computerSkin} wins`;
+  } else if (
+    gameBoard[6] == "computer" &&
+    gameBoard[7] == "computer" &&
+    gameBoard[8] == "computer"
+  ) {
+    isGameEnd = true;
+    turn.textContent = `${computerSkin} wins`;
+  } else if (
+    gameBoard[0] == "computer" &&
+    gameBoard[3] == "computer" &&
+    gameBoard[6] == "computer"
+  ) {
+    isGameEnd = true;
+    turn.textContent = `${computerSkin} wins`;
+  } else if (
+    gameBoard[1] == "computer" &&
+    gameBoard[4] == "computer" &&
+    gameBoard[7] == "computer"
+  ) {
+    isGameEnd = true;
+    turn.textContent = `${computerSkin} wins`;
+  } else if (
+    gameBoard[2] == "computer" &&
+    gameBoard[5] == "computer" &&
+    gameBoard[8] == "computer"
+  ) {
+    isGameEnd = true;
+    turn.textContent = `${computerSkin} wins`;
+  } else if (
+    gameBoard[0] == "computer" &&
+    gameBoard[4] == "computer" &&
+    gameBoard[8] == "computer"
+  ) {
+    isGameEnd = true;
+    turn.textContent = `${computerSkin} wins`;
+  } else if (
+    gameBoard[2] == "computer" &&
+    gameBoard[4] == "computer" &&
+    gameBoard[6] == "computer"
+  ) {
+    isGameEnd = true;
+    turn.textContent = `${computerSkin} wins`;
+  }
+}
 let skin;
 let computerSkin;
 let selected = false;
 let round;
+let roundNumber = 1;
+let isGameEnd = false;
+
+let playerFields = [];
+let computerFields = [];
 
 selectO.addEventListener("click", function () {
   if (selected == false) {
@@ -39,40 +159,62 @@ selectX.addEventListener("click", function () {
 
 fields.forEach(function (field) {
   field.addEventListener("click", function () {
-    console.log("works");
     if (selected === true && round === "player" && gameBoard.includes(field)) {
       console.log("works");
       field.textContent = skin;
-      gameBoard = gameBoard.filter((item) => item !== field);
+      gameBoard[gameBoard.indexOf(field)] = "player";
+      console.log(gameBoard);
       if (computerSkin === "o") {
         turn.textContent = "o turn";
       } else if (computerSkin === "x") {
         turn.textContent = "x turn";
       }
+      checkWin();
+      roundNumber++;
       round = "computer";
-      computerMove();
+      console.log(roundNumber);
+      if (roundNumber <= 9) {
+        computerMove();
+      } else if (isGameEnd != true) {
+        console.log((turn.textContent = "End"));
+        isGameEnd = true;
+      }
     }
   });
 });
 
 function computerMove() {
   setTimeout(function () {
-    let randomFieldElement = randomField();
-    randomFieldElement.textContent = computerSkin;
-    gameBoard = gameBoard.filter((item) => item !== randomFieldElement);
-    if (computerSkin === "o") {
-      turn.textContent = "x turn";
-    } else if (computerSkin === "x") {
-      turn.textContent = "o turn";
+    if ((round = "computer" && isGameEnd == false)) {
+      let randomFieldElement = randomField();
+      for (let i = 0; i < 1; ) {
+        if (
+          randomFieldElement != "player" &&
+          randomFieldElement != "computer"
+        ) {
+          randomFieldElement.textContent = computerSkin;
+          gameBoard[gameBoard.indexOf(randomFieldElement)] = "computer";
+          if (computerSkin === "o") {
+            turn.textContent = "x turn";
+          } else if (computerSkin === "x") {
+            turn.textContent = "o turn";
+          }
+          roundNumber++;
+          checkWin();
+          round = "player";
+          i++;
+        } else {
+          randomFieldElement = randomField();
+        }
+      }
     }
-    round = "player";
-  }, 1000);
+  }, 200);
 }
 restart.addEventListener("click", function () {
+  round = "";
   fields.forEach(function (field) {
     field.textContent = "";
   });
-  round = "";
   selected = false;
   skin = "";
   selectX.style.backgroundColor = "white";
@@ -80,5 +222,7 @@ restart.addEventListener("click", function () {
   turn.textContent = "Start game or select player";
   gameBoard = Array.from(fields);
   console.log(gameBoard);
+  roundNumber = 1;
+  console.log(round);
+  isGameEnd = false;
 });
-console.log(gameBoard);
